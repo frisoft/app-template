@@ -1,0 +1,25 @@
+[package]
+name = "app-infrastructure"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Infrastructure layer: adapters implementing the application's ports."
+
+[lib]
+name = "infrastructure"
+
+[lints]
+workspace = true
+
+[dependencies]
+# Declared to encode the rule: infrastructure may depend on both inner layers,
+# and nothing inner may depend on it.
+domain.workspace = true
+application.workspace = true
+
+# Uncomment as you implement ports:
+# async-trait.workspace = true
+
+# [dev-dependencies]
+# tokio = { workspace = true, features = ["macros", "rt"] }

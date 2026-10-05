@@ -1,0 +1,18 @@
+[package]
+name = "app-domain"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Pure domain layer: types, invariants and business decisions. No I/O."
+
+[lib]
+name = "domain"
+
+[lints]
+workspace = true
+
+[dependencies]
+# Keep the domain dependency-light. `thiserror` is the one allowed helper, for
+# turning domain errors into values. Uncomment when you add your first error.
+# thiserror.workspace = true

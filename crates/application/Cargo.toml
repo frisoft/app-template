@@ -1,0 +1,25 @@
+[package]
+name = "app-application"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Application layer: application workflows and the ports they need."
+
+[lib]
+name = "application"
+
+[lints]
+workspace = true
+
+[dependencies]
+# `domain` is declared even while this layer is empty: it encodes the
+# dependency rule (application -> domain) so the direction can never drift.
+domain.workspace = true
+
+# Uncomment as you add ports, workflows and errors:
+# async-trait.workspace = true
+# thiserror.workspace = true
+
+# [dev-dependencies]
+# tokio = { workspace = true, features = ["macros", "rt"] }

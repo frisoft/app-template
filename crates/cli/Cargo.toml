@@ -1,0 +1,25 @@
+[package]
+name = "app-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Driving adapter: a CLI that wires the layers together."
+
+[[bin]]
+name = "app"
+path = "src/main.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+# The composition root is the only place allowed to know every layer.
+domain.workspace = true
+application.workspace = true
+infrastructure.workspace = true
+anyhow.workspace = true
+
+# Uncomment as the composition root grows:
+# clap.workspace = true
+# tokio.workspace = true
