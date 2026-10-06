@@ -1,6 +1,6 @@
 ---
 name: pusher
-description: Stages, commits, and pushes changes to git. Runs cargo fmt before staging to ensure code is properly formatted. Creates a branch if on main and creates a PR if none exists.
+description: Stages, commits, and pushes changes to git. Runs make fmt before staging to ensure code is properly formatted. Creates a branch if on main and creates a PR if none exists.
 ---
 
 # Pusher Skill
@@ -13,7 +13,7 @@ This skill stages, commits, and pushes changes to git.
 
 ## Description
 
-Format the source code with cargo fmt, then stage changes with git add, create a commit with git commit, and push to the remote with git push. Ensures changes are never pushed directly to main branch - creates a branch if on main, and creates a PR if none exists for the branch.
+Format the source code with `make fmt`, then stage changes with git add, create a commit with git commit, and push to the remote with git push. Ensures changes are never pushed directly to main branch - creates a branch if on main, and creates a PR if none exists for the branch.
 
 ## When to use
 
@@ -40,9 +40,9 @@ If on main branch:
 - Set upstream with `git push -u origin <branch-name>`
 
 ### Step 3: Format the source code
-Run `cargo fmt -- --check` to check if the code is formatted correctly.
+Run `make fmt-check` to check if the code is formatted correctly.
 
-If the code is not formatted correctly, run `cargo fmt` to format it automatically.
+If the code is not formatted correctly, run `make fmt` to format it automatically.
 
 ### Step 4: Stage the changes
 Run `git add -A` to stage all changes.
