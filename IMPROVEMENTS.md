@@ -33,10 +33,11 @@ they are the acceptance criteria.
   - Fix: Standardise on `cargo fmt --all -- --check` in `pusher`.
   - **Resolved:** `pusher` Step 3 now calls the `make fmt-check` / `make fmt` targets instead of spelling out a `cargo` invocation, so the skill and the Makefile cannot drift again.
 
-- [ ] **M3 — Stale Redis/Docker copy-paste in `checker`.**
+- [x] **M3 — Stale Redis/Docker copy-paste in `checker`.** ✅ Done
   - Location: `.agents/skills/checker/SKILL.md:28`.
   - Problem: "Do NOT set any environment variables (e.g., REDIS_URL, DATABASE_URL). Do NOT use docker" — this template has no Redis/Postgres/Docker. Leftover from another project; misleading about required setup.
   - Fix: Remove the Redis/DB/Docker specifics (or replace with whatever this repo actually needs, currently: nothing).
+  - **Resolved:** Replaced with “This template needs no external services, environment variables or Docker — run the checks directly.”
 
 - [ ] **M4 — Toolchain not actually pinned; MSRV untested.**
   - Location: `rust-toolchain.toml` (`channel = "stable"`), `Cargo.toml` (`rust-version = "1.75"`), `flake.nix` comment, `AGENTS.md` §6.
