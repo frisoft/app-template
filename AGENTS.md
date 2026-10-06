@@ -111,7 +111,7 @@ recipe is in the [`add-workflow` skill](#9-skills).
 
 ```
 Cargo.toml                     workspace: members, shared deps, profiles
-rust-toolchain.toml            pinned stable toolchain + rustfmt/clippy
+rust-toolchain.toml            pinned toolchain (1.99.0) + rustfmt/clippy
 Makefile                       `make check` runs fmt-check + clippy + test
 flake.nix / .envrc             optional Nix dev shell (same toolchain)
 .agents/skills/                task-specific agent skills (see §9)
@@ -182,12 +182,13 @@ Allowed crate dependencies (already declared in the manifests):
 ## 6. Commands
 
 ```bash
-make check          # fmt-check + clippy (-D warnings) + tests  ← run before done
-make fmt            # cargo fmt --all
-make clippy         # cargo clippy --workspace --all-targets -- -D warnings
-make test           # cargo test --workspace
-make build          # release build
-make run            # cargo run -p app-cli
+make check           # fmt-check + toolchain-check + clippy (-D warnings) + tests  ← run before done
+make fmt             # cargo fmt --all
+make toolchain-check # rust-toolchain.toml ↔ Cargo.toml MSRV agreement
+make clippy          # cargo clippy --workspace --all-targets -- -D warnings
+make test            # cargo test --workspace
+make build           # release build
+make run             # cargo run -p app-cli
 
 cargo check --workspace --all-targets   # fast feedback while iterating
 cargo test -p <crate>                   # one crate
@@ -203,7 +204,7 @@ pedantic lints that fight this codebase's explicit, documented style are opted
 out centrally (see the comments in `Cargo.toml`) — do not `#[allow]` them at the
 call site instead.
 
-Environment: `rust-toolchain.toml` pins stable for rustup; `flake.nix` +
+Environment: `rust-toolchain.toml` pins `1.99.0` for rustup; `flake.nix` +
 `.envrc` provide the same via Nix. Use whichever is available.
 
 ---
