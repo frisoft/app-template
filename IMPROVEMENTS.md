@@ -27,15 +27,11 @@ they are the acceptance criteria.
 
 ## Medium — agent-workflow inconsistencies
 
-- [ ] **M1 — `pusher` never runs the checks before pushing.**
-  - Location: `.agents/skills/pusher/SKILL.md` (Step 3 onward).
-  - Problem: It only runs `cargo fmt`, then commits and pushes. It never runs clippy/tests, yet `AGENTS.md` §8 requires `make check` and `checker` exists to be run "before pushing". The default push path can ship failing code.
-  - Fix: Have `pusher` invoke the `checker` skill (or `make check`) before staging, and stop if it fails.
-
-- [ ] **M2 — Formatting command drift.**
+- [x] **M2 — Formatting command drift.** ✅ Done
   - Location: `.agents/skills/pusher/SKILL.md:43` vs `Makefile` / `AGENTS.md` §6.
   - Problem: `pusher` uses `cargo fmt -- --check`; the repo standard is `cargo fmt --all -- --check`.
   - Fix: Standardise on `cargo fmt --all -- --check` in `pusher`.
+  - **Resolved:** `pusher` Step 3 now calls the `make fmt-check` / `make fmt` targets instead of spelling out a `cargo` invocation, so the skill and the Makefile cannot drift again.
 
 - [ ] **M3 — Stale Redis/Docker copy-paste in `checker`.**
   - Location: `.agents/skills/checker/SKILL.md:28`.
