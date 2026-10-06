@@ -1,0 +1,57 @@
+name: CI
+
+# Single source of truth: every job below runs a `make` target, so CI and
+# `make check` cannot drift. The `checker` skill reads this file and runs the
+# same commands locally before a push.
+on:
+  push:
+    branches: [main]
+  # Run on every PR, to any base branch — not just PRs targeting `main`.
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege: the checks only need to read the repository.
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same ref to save runners.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  # Incremental artefacts are not reused across CI runs; skipping them keeps the
+  # cache small and the build deterministic.
+  CARGO_INCREMENTAL: "0"
+
+jobs:
+  # The three checks are independent, so they run in parallel. Each one installs
+  # the toolchain from `rust-toolchain.toml` (channel + rustfmt/clippy components)
+  # and caches the Cargo registry/build output.
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Check formatting
+        run: make fmt-check
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Lint (warnings are errors)
+        run: make clippy
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Run tests
+        run: make test
