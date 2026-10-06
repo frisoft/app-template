@@ -17,10 +17,11 @@ they are the acceptance criteria.
   - Fix: Make `make check` the single source of truth. Rewrite `checker` to run `make check` (drop the workflow-read step), and update the `AGENTS.md` §6/§9 wording. Alternatively, actually add `.github/workflows/ci.yaml` — but then keep the two in sync.
   - **Resolved:** Added `.github/workflows/ci.yaml` with three parallel jobs (`Format` → `make fmt-check`, `Clippy` → `make clippy`, `Test` → `make test`). CI is now the file `checker` reads, and both share the `make` targets, so the two cannot drift.
 
-- [ ] **H2 — README links outside the repository.**
+- [x] **H2 — README links outside the repository.** ✅ Done
   - Location: `README.md:6` (`../rust-presentation/slides.md`).
   - Problem: The path is outside the repo, so the link is dead for any agent or fresh clone.
   - Fix: Vendor the slides into the repo (e.g. `docs/`), replace with a stable external URL, or remove the sentence.
+  - **Resolved:** Removed the external `slides.md` reference; the README now simply introduces the design ideas inline.
 
 ---
 

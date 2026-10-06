@@ -3,7 +3,7 @@
 A workspace skeleton for building complex applications in Rust where the domain
 rules live in the type system and I/O is pushed to the edges.
 
-The design follows the ideas in `../rust-presentation/slides.md`:
+The design follows these ideas:
 
 - **Domain-Driven Design** — the domain speaks the language of the business.
 - **Onion / Hexagonal architecture** — dependencies point inward only.
