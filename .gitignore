@@ -2,3 +2,8 @@
 **/*.rs.bk
 .direnv/
 result
+
+# Editor swap/backup files
+*.swp
+*.swo
+*~
