@@ -25,7 +25,7 @@ Read `.github/workflows/ci.yaml` to identify the checks to run.
 ### Step 2: Execute the CI checks
 Run exactly the same commands defined in the workflow file.
 
-This template needs no external services, environment variables or Docker — run the checks directly.
+Do NOT set any environment variables (e.g., REDIS_URL, DATABASE_URL). Do NOT use docker - run tests directly instead.
 
 If any check fails, fix the issues and rerun until all checks pass.
 

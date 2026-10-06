@@ -37,7 +37,7 @@ they are the acceptance criteria.
   - Location: `.agents/skills/checker/SKILL.md:28`.
   - Problem: "Do NOT set any environment variables (e.g., REDIS_URL, DATABASE_URL). Do NOT use docker" — this template has no Redis/Postgres/Docker. Leftover from another project; misleading about required setup.
   - Fix: Remove the Redis/DB/Docker specifics (or replace with whatever this repo actually needs, currently: nothing).
-  - **Resolved:** Replaced with “This template needs no external services, environment variables or Docker — run the checks directly.”
+  - **Resolved:** Kept as written — the wording is intentional. It is a guardrail: do not introduce special environment variables or Docker when the application later has a DB or other storage service. The `checker` skill must run the checks directly.
 
 - [ ] **M4 — Toolchain not actually pinned; MSRV untested.**
   - Location: `rust-toolchain.toml` (`channel = "stable"`), `Cargo.toml` (`rust-version = "1.75"`), `flake.nix` comment, `AGENTS.md` §6.
