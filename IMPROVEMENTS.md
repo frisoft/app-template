@@ -39,10 +39,11 @@ they are the acceptance criteria.
   - Fix: Remove the Redis/DB/Docker specifics (or replace with whatever this repo actually needs, currently: nothing).
   - **Resolved:** Kept as written — the wording is intentional. It is a guardrail: do not introduce special environment variables or Docker when the application later has a DB or other storage service. The `checker` skill must run the checks directly.
 
-- [ ] **M4 — Toolchain not actually pinned; MSRV untested.**
+- [x] **M4 — Toolchain not actually pinned; MSRV untested.** ✅ Done
   - Location: `rust-toolchain.toml` (`channel = "stable"`), `Cargo.toml` (`rust-version = "1.75"`), `flake.nix` comment, `AGENTS.md` §6.
   - Problem: `stable` floats (local `rustc` is 1.99.0). The flake comment claims a "pinned toolchain", but `fromRustupToolchainFile` with `stable` is not version-pinned. The declared MSRV 1.75 is enforced nowhere.
   - Fix: Pin a concrete version in `rust-toolchain.toml` (e.g. `channel = "1.75.0"`, or bump MSRV and pin to it), update the flake comment, and add an MSRV check if CI is added.
+  - **Resolved:** Pinned `rust-toolchain.toml` to `channel = "1.99.0"` and aligned `Cargo.toml` `rust-version = "1.99"`, so the toolchain and the MSRV move together. `flake.nix` (`fromRustupToolchainFile`) and CI (`setup-rust-toolchain`) both read the pinned file. Added a `make toolchain-check` target (wired into `make check` and a CI job) that fails if the two versions drift or the channel is not a concrete version. Updated the `AGENTS.md` §4/§6 wording from "stable" to "1.99.0".
 
 ---
 
