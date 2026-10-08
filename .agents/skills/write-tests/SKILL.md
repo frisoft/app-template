@@ -32,6 +32,11 @@ Rules live in `AGENTS.md`. Tests describe behaviour, not implementation.
 
 ## Application workflow test shape
 
+> `#[tokio::test]` needs the `tokio` **dev-dependency**. It ships commented out;
+> uncomment it under `[dev-dependencies]` in the crate you are testing
+> (`crates/application/Cargo.toml` / `crates/infrastructure/Cargo.toml`):
+> `# tokio = { workspace = true, features = ["macros", "rt"] }`.
+
 ```rust,ignore
 #[tokio::test]
 async fn places_a_draft_and_commits_state_with_events() {

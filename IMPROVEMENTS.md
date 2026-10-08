@@ -49,30 +49,34 @@ they are the acceptance criteria.
 
 ## Low — nits and redundancy
 
-- [ ] **L1 — Lint attributes declared twice, not uniformly.**
+- [x] **L1 — Lint attributes declared twice, not uniformly.** ✅ Done
   - Location: `Cargo.toml` `[workspace.lints.rust]` + `crates/{domain,application,infrastructure}/src/lib.rs` (`#![forbid(unsafe_code)]`, `#![warn(missing_docs)]`); `crates/cli/src/main.rs` has neither.
   - Problem: Redundant (workspace lints already cover it) and inconsistent across crates.
   - Fix: Pick one mechanism and apply it uniformly to every crate.
+  - **Resolved:** Removed the redundant inner attributes from the three `lib.rs` files. The policy now lives solely in `[workspace.lints]` in `Cargo.toml`, and every crate opts in uniformly with `[lints] workspace = true`.
 
-- [ ] **L2 — Typos in `pusher`.**
+- [x] **L2 — Typos in `pusher`.** ✅ Done
   - Location: `.agents/skills/pusher/SKILL.md` Step 2.
   - Problem: "main brnach", "feature brach".
   - Fix: Correct to "branch".
+  - **Resolved:** Both typos corrected to "branch".
 
-- [ ] **L3 — Aspirational adapters may confuse.**
+- [x] **L3 — Aspirational adapters may confuse.** ✅ Done
   - Location: `AGENTS.md` §3/§4 (`http` / `worker`) vs `README.md` layout (only `cli`).
   - Problem: The extra adapters do not exist; an agent may hunt for them.
   - Fix: Add a short "(not included; add under `crates/`)" note, or align the two documents.
+  - **Resolved:** `AGENTS.md` §3 and §4 now state that only `cli` ships and that `http` / `worker` must be added under `crates/`.
 
-- [ ] **L4 — `write-tests` uses `#[tokio::test]` while `tokio` ships commented out.**
+- [x] **L4 — `write-tests` uses `#[tokio::test]` while `tokio` ships commented out.** ✅ Done
   - Location: `.agents/skills/write-tests/SKILL.md` vs `crates/application/Cargo.toml` / `crates/infrastructure/Cargo.toml`.
   - Problem: An agent can miss the "uncomment dev-dependency" step.
   - Fix: Note the dependency-uncomment step inline in the skill's test example.
+  - **Resolved:** Added an inline note above the `#[tokio::test]` example spelling out the `[dev-dependencies]` uncomment step.
 
 ---
 
 ## Verification
 
-- [ ] Re-run `make check` after the changes above.
-- [ ] Confirm every skill's file/path references resolve inside the repo.
-- [ ] Confirm no document refers to CI unless `.github/workflows/` exists (see H1).
+- [x] Re-run `make check` after the changes above. ✅ Green.
+- [x] Confirm every skill's file/path references resolve inside the repo. ✅ (remaining literal paths, e.g. `crates/domain/tests/`, are example placeholders to create, not dangling references.)
+- [x] Confirm no document refers to CI unless `.github/workflows/` exists (see H1). ✅ `.github/workflows/ci.yaml` exists.
