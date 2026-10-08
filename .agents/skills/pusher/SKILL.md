@@ -29,8 +29,8 @@ Run `git branch --show-current` to determine the current branch.
 
 ### Step 2: Handle main branch (REQUIRED)
 If on main branch:
-- Changes to main brnach are **NOT allowed**
-- Create a feature brach but do not ask the user for a new branch name
+- Changes to main branch are **NOT allowed**
+- Create a feature branch but do not ask the user for a new branch name
 - Generate a branch name automatically based on the changes:
   - Check git status or diff to understand what changed
   - Use format: `<type>/<short-description>` where type is: feature/, fix/, refactor/, docs/, test/

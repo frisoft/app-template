@@ -20,7 +20,4 @@
 //! The `Payment` / `Money` snippets in that document are **illustrative
 //! examples only** — they are intentionally not part of this template.
 
-#![forbid(unsafe_code)]
-#![warn(missing_docs)]
-
 // TODO: add your adapters here.

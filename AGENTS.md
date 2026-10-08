@@ -98,6 +98,8 @@ system.
   unit of work, event bus, external services).
 - **CLI / HTTP / worker** — **driving adapters** that call the application. The
   binary is the composition root: the only place allowed to know every layer.
+  Only `cli` ships with the template; add `http` / `worker` under `crates/` when
+  you need them.
 - **Dependency direction is enforced by the crate graph at compile time.**
 
 Every business operation is split into a **domain workflow**
@@ -144,6 +146,10 @@ crates/application/src/error.rs            per-workflow error enums
 crates/infrastructure/src/<adapter>.rs     port implementations
 crates/cli/src/main.rs                     composition root
 ```
+
+The template ships only the `cli` driving adapter. Other driving adapters
+(`http`, `worker`, …) are **not included** — add them under `crates/` when you
+need them.
 
 There is no `Payment` module and there should not be one unless *your* domain is
 payments.
