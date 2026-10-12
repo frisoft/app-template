@@ -43,3 +43,6 @@ cargo run -p app-cli       # the composition root
 
 If you use Nix, `direnv allow` (or `nix develop`) provides the toolchain. A
 `rust-toolchain.toml` is provided for rustup users.
+
+To start a project from this template, rename the crate packages and the binary
+first — see the [`rename-app`](.agents/skills/rename-app/SKILL.md) skill.
