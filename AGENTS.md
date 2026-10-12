@@ -263,6 +263,7 @@ loads a skill when its description matches the task, or you can force it with
 | `gh-issues` | Listing, picking or planning a **GitHub** issue via the `gh` CLI. |
 | `pusher` | Staging, committing, branching and pushing changes (never to `main`). |
 | `checker` | Running the CI checks locally before pushing. |
+| `rename-app` | Bootstrapping from the template — renaming the workspace crates and the built binary away from `app-*` / `app`. |
 
 ---
 
