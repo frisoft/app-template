@@ -117,6 +117,7 @@ rust-toolchain.toml            pinned toolchain (1.99.0) + rustfmt/clippy
 Makefile                       `make check` runs fmt-check + clippy + test
 flake.nix / .envrc             optional Nix dev shell (same toolchain)
 .agents/skills/                task-specific agent skills (see §9)
+docs/images/                   diagrams used by README.md (onion, workflow)
 plans/                         issue plans, NNN-slug.md (see §9 gh-issues)
 
 crates/
